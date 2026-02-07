@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".Affiche">
+
+    <!-- Titre de la page -->
+
+    <!-- Barre de recherche -->
+    <TextView
+        android:id="@+id/tvTitle_affiche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/affichage"
+        android:textColor="#2196F3"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/edSearch_affiche"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="10dp"
+            android:hint="Search conact"
+            android:inputType="text"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <!-- Liste des contacts -->
+
+    <!-- Bouton Retour -->
+    <ListView
+        android:id="@+id/lv_affiche"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#E0E0E0"
+        android:dividerHeight="1dp" />
+
+    <Button
+        android:id="@+id/btnBack_affiche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Back"
+        android:textAllCaps="false" />
+
+</LinearLayout>

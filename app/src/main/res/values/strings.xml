@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TrueCaller</string>
+    <string name="title">Welcome</string>
+    <string name="menu">Menu</string>
+    <string name="ajout">Add a new conact</string>
+    <string name="affichage">List of conacts</string>
+</resources>
