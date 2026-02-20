@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Ajout extends AppCompatActivity {
@@ -15,13 +14,12 @@ public class Ajout extends AppCompatActivity {
     EditText edNom_ajout, edPrenom_ajout, edNumber_ajout;
     Button btnBack_ajout, btnInit_ajout, btnSave_ajout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ajout);
-        //récupération
+
+        // Récupération des composants
         edNom_ajout = findViewById(R.id.edNom_ajout);
         edPrenom_ajout = findViewById(R.id.edPrenom_ajout);
         edNumber_ajout = findViewById(R.id.edNumber_ajout);
@@ -29,7 +27,7 @@ public class Ajout extends AppCompatActivity {
         btnInit_ajout = findViewById(R.id.btnInit_ajout);
         btnSave_ajout = findViewById(R.id.btnSave_ajout);
 
-        //event
+        // Événement pour le bouton Sauvegarder
         btnSave_ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,39 +36,41 @@ public class Ajout extends AppCompatActivity {
                 String phone = edNumber_ajout.getText().toString();
 
                 if (!first.isEmpty() && !last.isEmpty() && !phone.isEmpty()) {
-                    // Ajout dans la liste statique
-                    Contact c = new Contact(first, last, phone);
-                    Home.contacts.add(c);
+                    // 1. Ouvrir le manager et la base de données
+                    ContactManager manager = new ContactManager(Ajout.this);
+                    manager.Ouvrir();
 
-                    // Message de succès
-                    Toast.makeText(Ajout.this, "Contact enregistré avec succès !", Toast.LENGTH_SHORT).show();
+                    // 2. Ajouter le contact à la base de données
+                    long result = manager.ajout(first, last, phone);
 
-                    // Redirection vers l'activité Affiche (qui utilise view_contact.xml pour ses items)
-                    Intent i = new Intent(Ajout.this, Affiche.class);
-                    startActivity(i);
-                    finish();
+                    // 3. Fermer la base de données
+                    manager.fermer();
+
+                    if (result != -1) {
+                        Toast.makeText(Ajout.this, "Contact enregistré !", Toast.LENGTH_SHORT).show();
+                        finish(); // Ferme l'activité Ajout et retourne à la précédente
+                    } else {
+                        Toast.makeText(Ajout.this, "Erreur lors de l'enregistrement.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(Ajout.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         btnBack_ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Ajout.this, Home.class);
-                startActivity(i);
-                finish();
+                finish(); // Simplement fermer l'activité actuelle
             }
         });
+
         btnInit_ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Vider les textes
                 edNom_ajout.setText("");
                 edPrenom_ajout.setText("");
                 edNumber_ajout.setText("");
-
-                // Remettre le curseur sur le premier champ
                 edNom_ajout.requestFocus();
             }
         });

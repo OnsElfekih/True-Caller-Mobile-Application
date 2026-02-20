@@ -1,21 +1,22 @@
 package ELFEKIHOns.truecaller;
 
 public class Contact {
-    String first,last,phone;
+    int id;
+    String first, last, phone;
 
-    public Contact(String first, String last, String phone) {
+    public Contact(int id, String first, String last, String phone) {
+        this.id = id;
         this.first = first;
         this.last = last;
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "first='" + first + '\'' +
-                ", last='" + last + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirst() {
@@ -40,5 +41,10 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return first + " " + last + " : " + phone;
     }
 }

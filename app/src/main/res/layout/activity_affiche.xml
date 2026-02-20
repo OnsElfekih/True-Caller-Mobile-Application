@@ -47,8 +47,8 @@
     <!-- Liste des contacts -->
 
     <!-- Bouton Retour -->
-    <ListView
-        android:id="@+id/lv_affiche"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_affiche"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
