@@ -6,96 +6,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="15dp"
-
+    android:padding="25dp"
     tools:context=".MainActivity">
+
+    <!-- Logo de l'application -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/account"
+        app:tint="#2196F3"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="131dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title"
         android:textColor="#2196F3"
         android:textSize="34sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"/>
 
+    <!-- Champ Username -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/txtusername"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Username"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edUsername_auth"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
+            android:drawableStart="@drawable/account"
+            android:drawablePadding="10dp"
+            android:hint="Enter username"
             android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
+    <!-- Champ Password -->
     <LinearLayout
         android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Password"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edPassd_auth"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
+            android:drawableStart="@drawable/account"
+            android:drawablePadding="10dp"
+            android:hint="Enter password"
             android:inputType="numberPassword" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
-        <Button
-            android:id="@+id/btnQt_auth"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Exit" />
-
-        <Button
-            android:id="@+id/btnct_auth"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Connect" />
     </LinearLayout>
 
     <CheckBox
         android:id="@+id/cbResterCt_auth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
         android:text="Remember Me" />
+
+    <!-- Boutons d'action -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnQt_auth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#9E9E9E"
+            android:text="Exit"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnct_auth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="#2196F3"
+            android:text="Connect"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
 </LinearLayout>

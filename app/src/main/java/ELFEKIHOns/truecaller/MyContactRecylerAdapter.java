@@ -35,7 +35,7 @@ public class MyContactRecylerAdapter extends RecyclerView.Adapter<MyContactRecyl
     public MyContactRecylerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //creation des views
         LayoutInflater inf = LayoutInflater.from(context);
-        View v = inf.inflate(R.layout.view_contact, null);
+        View v = inf.inflate(R.layout.view_contact, parent,false);
         return new MyViewHolder(v);
     }
 

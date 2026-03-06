@@ -12,13 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:padding="20dp"
         tools:context=".Home">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="131dp"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -28,13 +27,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/menu"
                 android:textColor="#2196F3"
-                android:textSize="24sp"
+                android:textSize="32sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/icon" />
 
         </LinearLayout>
@@ -44,24 +43,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:padding="12dp"
-            android:text="Add" />
+            android:padding="15dp"
+            android:drawableStart="@drawable/account"
+            android:drawablePadding="15dp"
+            android:text="Add New Contact"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnAff_acc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:padding="12dp"
-            android:text="List of contacts" />
+            android:padding="15dp"
+            android:drawableStart="@drawable/account"
+            android:drawablePadding="15dp"
+            android:text="List of Contacts"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/btnExit_acc"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Exit"
-            android:layout_margin="10dp"
-            android:padding="12dp" />
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#DDDDDD" />
 
         <Button
             android:id="@+id/btnDec_acc"
@@ -69,7 +75,19 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="12dp"
-            android:text="Deconnect" />
+            android:backgroundTint="#64B5F6"
+            android:text="Logout"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnExit_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="12dp"
+            android:backgroundTint="#1976D2"
+            android:text="Exit Application"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 </ScrollView>
