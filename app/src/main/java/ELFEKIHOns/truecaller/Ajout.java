@@ -48,7 +48,12 @@ public class Ajout extends AppCompatActivity {
 
                     if (result != -1) {
                         Toast.makeText(Ajout.this, "Contact enregistré !", Toast.LENGTH_SHORT).show();
-                        finish(); // Ferme l'activité Ajout et retourne à la précédente
+                        
+                        // Rediriger directement vers la liste
+                        Intent i = new Intent(Ajout.this, Affiche.class);
+                        startActivity(i);
+                        
+                        finish(); // Ferme l'activité Ajout
                     } else {
                         Toast.makeText(Ajout.this, "Erreur lors de l'enregistrement.", Toast.LENGTH_SHORT).show();
                     }

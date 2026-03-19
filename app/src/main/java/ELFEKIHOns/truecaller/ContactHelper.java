@@ -12,12 +12,14 @@ public class ContactHelper extends SQLiteOpenHelper {
     public static final String col_first = "First_Name";
     public static final String col_last = "Last_Name";
     public static final String col_phone = "Phone";
+    public static final String col_fav = "Is_Favorite"; // Nouvelle colonne
 
     String requete = "CREATE TABLE " + table_contacts + " ("
             + col_id + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + col_first + " TEXT NOT NULL, "
             + col_last + " TEXT NOT NULL, "
-            + col_phone + " TEXT NOT NULL);";
+            + col_phone + " TEXT NOT NULL, "
+            + col_fav + " INTEGER DEFAULT 0);"; // 0 = non favori, 1 = favori
 
     public ContactHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

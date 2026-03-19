@@ -25,6 +25,7 @@ public class ContactManager {
         values.put(ContactHelper.col_first, first);
         values.put(ContactHelper.col_last, last);
         values.put(ContactHelper.col_phone, phone);
+        values.put(ContactHelper.col_fav, 0); // Par défaut non favori
         return db.insert(ContactHelper.table_contacts, null, values);
     }
 
@@ -48,7 +49,8 @@ public class ContactManager {
                 new String[]{ContactHelper.col_id,
                         ContactHelper.col_first,
                         ContactHelper.col_last,
-                        ContactHelper.col_phone},
+                        ContactHelper.col_phone,
+                        ContactHelper.col_fav}, // Lecture de la colonne favori
                 selection, selectionArgs, null, null, null);
 
         if (cr.moveToFirst()) {
@@ -57,11 +59,19 @@ public class ContactManager {
                 String first = cr.getString(1);
                 String last = cr.getString(2);
                 String phone = cr.getString(3);
-                l.add(new Contact(id, first, last, phone));
+                int isFav = cr.getInt(4); // Récupération de l'état favori
+                l.add(new Contact(id, first, last, phone, isFav));
             } while (cr.moveToNext());
         }
         cr.close();
         return l;
+    }
+
+    public int changerFavori(int id, int nouvelEtat) {
+        ContentValues values = new ContentValues();
+        values.put(ContactHelper.col_fav, nouvelEtat);
+        return db.update(ContactHelper.table_contacts, values, 
+                         ContactHelper.col_id + "=?", new String[]{String.valueOf(id)});
     }
 
     public int supprimer(int id) {

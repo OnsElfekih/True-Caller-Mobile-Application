@@ -1,10 +1,13 @@
 package ELFEKIHOns.truecaller;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +56,7 @@ public class MyContactAdapter extends BaseAdapter {
         ImageView edit = l.findViewById(R.id.imageViewEdit_contact);
         ImageView delete = l.findViewById(R.id.imageViewDelete_contact);
         ImageView call = l.findViewById(R.id.imageViewCall_contact);
+        ImageView sms = l.findViewById(R.id.imageViewSms_contact);
 
         Contact c = contacts.get(position);
         tfirst.setText(c.getFirst());
@@ -63,14 +67,14 @@ public class MyContactAdapter extends BaseAdapter {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Modification");
                 /*Intent i = new Intent(context, Edition.class);
                 i.putExtra("ID", c.getId());
                 i.putExtra("FIRST", c.getFirst());
                 i.putExtra("LAST", c.getLast());
                 i.putExtra("PHONE", c.getPhone());
                 context.startActivity(i);*/
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Modification");
 
                 // 1. Gonfler le layout
                 View vd = LayoutInflater.from(context).inflate(R.layout.activity_edit, null);
@@ -121,8 +125,8 @@ public class MyContactAdapter extends BaseAdapter {
                     }
                 });
 
-                btnBack.setOnClickListener(v -> dialog.dismiss());
-                btnInit.setOnClickListener(v -> {
+                btnBack.setOnClickListener(v1 -> dialog.dismiss());
+                btnInit.setOnClickListener(v1 -> {
                     edNom.setText("");
                     edPrenom.setText("");
                     edNum.setText("");
@@ -164,13 +168,20 @@ public class MyContactAdapter extends BaseAdapter {
             }
         });
 
+
         // Action sur le bouton Appel
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + c.getPhone()));
-                context.startActivity(intent);
+                if (context.checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:" + c.getPhone()));
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + c.getPhone()));
+                    context.startActivity(intent);
+                }
             }
         });
 

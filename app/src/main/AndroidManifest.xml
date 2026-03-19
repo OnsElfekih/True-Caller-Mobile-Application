@@ -4,6 +4,10 @@
 
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +17,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TrueCaller">
+        android:theme="@style/Theme.TrueCaller"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".EnvoiSms"
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -37,6 +45,6 @@
         <activity
             android:name=".Edition"
             android:exported="false" />
-,    </application>
+    </application>
 
 </manifest>

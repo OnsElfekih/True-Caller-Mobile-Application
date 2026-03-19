@@ -22,7 +22,7 @@ public class Affiche extends AppCompatActivity {
     EditText edSearch_affiche;
     RecyclerView rv_affiche;
     ContactManager manager;
-    private static final int PERMISSION_CALL_REQUEST_CODE = 100;
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,8 @@ public class Affiche extends AppCompatActivity {
         manager = new ContactManager(Affiche.this);
         manager.Ouvrir();
 
-        // Demander la permission d'appel au lancement de l'activité
-        checkCallPermission();
+        // Demander les permissions (Appel + SMS + Localisation)
+        checkPermissions();
 
         // Recherche en temps réel
         edSearch_affiche.addTextChangedListener(new TextWatcher() {
@@ -56,19 +56,31 @@ public class Affiche extends AppCompatActivity {
         btnBack_affiche.setOnClickListener(view -> finish());
     }
 
-    private void checkCallPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_CALL_REQUEST_CODE);
+    private void checkPermissions() {
+        // Ajout de ACCESS_FINE_LOCATION dans la liste
+        String[] permissions = {
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        };
+        
+        ArrayList<String> permissionsToRequest = new ArrayList<>();
+        for (String p : permissions) {
+            if (ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(p);
+            }
+        }
+
+        if (!permissionsToRequest.isEmpty()) {
+            ActivityCompat.requestPermissions(this, permissionsToRequest.toArray(new String[0]), PERMISSION_REQUEST_CODE);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_CALL_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission accordée
-            }
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            // Traitement si nécessaire
         }
     }
 

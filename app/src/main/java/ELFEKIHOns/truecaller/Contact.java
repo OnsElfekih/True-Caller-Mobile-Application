@@ -3,12 +3,22 @@ package ELFEKIHOns.truecaller;
 public class Contact {
     int id;
     String first, last, phone;
+    int isFav; // 0 = no, 1 = yes
 
-    public Contact(int id, String first, String last, String phone) {
+    public Contact(int id, String first, String last, String phone, int isFav) {
         this.id = id;
         this.first = first;
         this.last = last;
         this.phone = phone;
+        this.isFav = isFav;
+    }
+
+    public int getIsFav() {
+        return isFav;
+    }
+
+    public void setIsFav(int isFav) {
+        this.isFav = isFav;
     }
 
     public int getId() {
