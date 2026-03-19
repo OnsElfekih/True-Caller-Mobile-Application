@@ -121,5 +121,4 @@ Key table: `Contact.`
 
 **Ons ELFEKIH**  
 IT Engineering Student — Business Intelligence  
-🔗 [GitHub](https://github.com/OnsElfekih) · [LinkedIn](https://www.linkedin.com/in/ons-elfekih)
-
+🔗 [LinkedIn](https://www.linkedin.com/in/ons-elfekih) · [Portfolio](https://portfolio-elfekih-ons.vercel.app/)
