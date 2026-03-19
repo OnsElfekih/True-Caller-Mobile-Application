@@ -21,7 +21,8 @@ A native Android application built in Java that replicates core TrueCaller funct
 |--------------|---------------------|
 | Language     | Java                |
 | Platform     | Android (Android Studio) |
-| Database     | SQLite              |
+| Database     | SQLite & MySQL            |
+| Services     | Google Play Services (Location), SmsManager, Telephony            |
 | UI           | XML Layouts (Android Views) |
 
 ---
@@ -34,15 +35,24 @@ True-Caller-Mobile-Application/
 │   ├── manifests/
 │   │   └── AndroidManifest.xml
 │   ├── java/
-│   │   └── com.example.truecaller/
-│   │       ├── MainActivity.java
+│   │   └── ELFEKIHOns.truecaller/
+│   │       ├── Affiche.java
+            ├── Ajout.java
+            ├── Contact.java
+            ├── ContactHelper.java
+            ├── ContactManager.java
+            ├── DataBaseConfig.java
+            ├── Edition.java
+            ├── EnvoiSms.java
+            ├── Home.java
+            ├── JsonParser.java
+            ├── MainActivity.java
+            ├── MyContactAdapter.java
+            ├── MyContactRecyclerAdapter.java
 │   │       ├── SplashActivity.java
-│   │       ├── ContactActivity.java
-│   │       ├── SearchActivity.java
-│   │       └── DatabaseHelper.java
 │   └── res/
-│       ├── layout/
 │       ├── drawable/
+│       ├── layout/
 │       └── values/
 └── README.md
 ```
@@ -81,12 +91,12 @@ True-Caller-Mobile-Application/
 The following permissions are declared in `AndroidManifest.xml`:
 
 ```xml
-<uses-permission android:name="android.permission.CALL_PHONE" />
-<uses-permission android:name="android.permission.SEND_SMS" />
-<uses-permission android:name="android.permission.READ_CONTACTS" />
-<uses-permission android:name="android.permission.WRITE_CONTACTS" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 
 ---
@@ -95,14 +105,15 @@ The following permissions are declared in `AndroidManifest.xml`:
 
 Uses **SQLite** (via `SQLiteOpenHelper`) for local storage of contact data.
 
-Key table: `contacts`
+Key table: `Contact.`
 
 | Column       | Type    | Description             |
 |--------------|---------|-------------------------|
-| `id`         | INTEGER | Primary key             |
-| `name`       | TEXT    | Contact full name       |
-| `phone`      | TEXT    | Phone number            |
-| `email`      | TEXT    | Email address           |
+| `id`         | INTEGER | Contact id             |
+| `first`       | TEXT    | Contact first name       |
+| `last`      | TEXT    | Contact last name           |
+| `phone`      | TEXT    | Contact phone number          |
+| `isFav`      | INTEGER    |  Indicates if contact is favorite          |
 
 ---
 
@@ -112,8 +123,3 @@ Key table: `contacts`
 IT Engineering Student — Business Intelligence  
 🔗 [GitHub](https://github.com/OnsElfekih) · [LinkedIn](https://www.linkedin.com/in/ons-elfekih)
 
----
-
-## 📄 License
-
-This project is for academic and portfolio purposes.
